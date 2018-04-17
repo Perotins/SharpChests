@@ -1,0 +1,7 @@
+# Welcome to the SmartChest messages.yml!
+# Here you can find any message within this plugin!
+# Make sure to only use placeholders found within the original message, otherwise it will not be supported!
+
+
+sc-help: "&1&lSmartChest Command"
+sc-help-page: ""
