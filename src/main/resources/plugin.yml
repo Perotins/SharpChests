@@ -4,7 +4,7 @@ main: me.perotin.smartchests.SmartChestsPlugin
 version: 1.0
 commands:
    smartchests:
-      aliases: [sc, smartc, schest]
+      aliases: [sc, smartc, schest, smartchest]
       permission: smartchest.command
       usage: &4Error:&c See /sc help for help!
       description: The main command for SmartChests
