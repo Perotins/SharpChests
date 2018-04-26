@@ -17,6 +17,12 @@ public class SmartChestsPlugin extends JavaPlugin {
     public void onEnable(){
         singleton = this;
         getCommand("smartchests").setExecutor(new SmartChestCommand(this));
+        init();
+
+    }
+
+    private void init(){
+        saveResource("messages.yml", false);
     }
 
     public static SmartChestsPlugin getSingleton(){

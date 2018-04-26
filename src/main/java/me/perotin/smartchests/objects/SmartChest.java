@@ -1,17 +1,37 @@
 package me.perotin.smartchests.objects;
 
-import java.util.UUID;
+import me.perotin.smartchests.files.SmartFile;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.*;
 
 public class SmartChest {
 
     private UUID uniqueId;
     private ChestStatus status;
     private UUID owner = null;
+    private ItemWrapper wrapper;
 
-    public SmartChest(UUID uniqueId, ChestStatus status, UUID owner) {
+
+
+    public static HashSet<SmartChest> chests = new HashSet<>();
+
+    public SmartChest(UUID uniqueId, ChestStatus status, UUID owner, ItemWrapper wrapper) {
         this.uniqueId = uniqueId;
         this.status = status;
-        this.owner = owner;
+        this.wrapper = wrapper;
+
+    }
+
+    public ItemWrapper getWrapper() {
+        return wrapper;
+    }
+
+    public void setWrapper(ItemWrapper wrapper) {
+        this.wrapper = wrapper;
     }
 
     public UUID getUniqueId() {
@@ -39,6 +59,30 @@ public class SmartChest {
     }
 
     public enum ChestStatus {
-        PRIVATE, PUBLIC
+        CLAIMED, UNCLAIMED
+    }
+
+    public static void createSmartChest(Player player){
+        ItemStack chest = constructChest(player.getName(), player.getUniqueId().toString());
+        UUID chestID = UUID.randomUUID();
+        SmartChest smartChest = new SmartChest(chestID, ChestStatus.UNCLAIMED, null, new ItemWrapper(chestID, chest.getItemMeta()));
+        chests.add(smartChest);
+        player.getInventory().addItem(chest);
+
+
+
+    }
+
+    private static ItemStack constructChest(String name, String uuid){
+        SmartFile messages = new SmartFile(SmartFile.Type.MESSAGES);
+        ItemStack chest = new ItemStack(Material.CHEST);
+        ItemMeta chestMeta = chest.getItemMeta();
+        chestMeta.setDisplayName(messages.getString("smartchest-display").replace("$name$", name));
+        chestMeta.setLore(Arrays.asList(messages.getString("smartchest-uuid").replace("$uuid$", uuid)));
+        chest.setItemMeta(chestMeta);
+
+
+
+        return chest;
     }
 }

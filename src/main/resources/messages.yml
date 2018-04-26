@@ -3,11 +3,23 @@
 # Make sure to only use placeholders found within the original message, otherwise it will not be supported!
 
 
+prefix: "&7[&eSC&7] "
 help: "help"
-sc-help: "&9&lSmartChest Command"
-sc-help-page: "&3<--------- Page ($misc$/3) --------->"
-sc-help-info: "&e&oClick on a message to copy it!"
-sc-help-buy: "&3/sc buy <amount> &f - Buy a SharpChest"
+sc-help: "&e&lSmartChest Command"
+sc-help-page: "&7<--------- Page ($misc$/3) --------->"
+sc-help-info: "&7&oClick on a message to copy it!"
+sc-help-buy: "&e/sc buy <amount> &f - Buy a SharpChest"
 sc-help-buy-paste: "/sc buy <amount> "
 
-click-copy: "&bClick to copy!"
+click-copy: "&6Click to copy!"
+
+
+no-permission: "&cYou do not have permission to do this!"
+
+# The following messages pertain to the metadata of chests
+smartchest-display: "&e&lSmartChest: &f$name$"
+smartchest-uuid: "&7UUID: $uuid$"
+
+bought-smartchest: "$prefix$ &7You bought &e$amount$(s) &7SmartChests!"
+
+cannot-parse: "$prefix$ &7Could not parse $misc$! Enter a whole digit."
